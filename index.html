@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arcade Portfolio</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Press Start 2P', cursive;
+      background-color: #0d0d0d; /* Dark Background */
+      color: #fff;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    a {
+      text-decoration: none;
+      color: #00ffcc;
+    }
+
+    a:hover {
+      text-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+    }
+
+    header {
+      text-align: center;
+      background: linear-gradient(to right, #ff0080, #ff8c00);
+      padding: 2rem 0;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 5px solid transparent;
+      animation: rainbow-border 3s linear infinite; /* Rainbow border animation */
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 2px 2px #000;
+      background-image: linear-gradient(to right, red, orange, yellow, green, cyan, blue, violet);
+      background-size: 200% auto;
+      color: transparent;
+      background-clip: text;
+      -webkit-background-clip: text;
+      animation: rainbow-text 3s linear infinite;
+    }
+
+    header nav a {
+      margin: 0 1rem;
+      font-size: 1.2rem;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+
+    section {
+      margin-bottom: 3rem;
+      padding: 2rem;
+      background: #1a1a1a;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 10px;
+      border: 2px solid transparent;
+      animation: rainbow-border 4s linear infinite;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      color: #ffcc00;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      text-shadow: 2px 2px #000;
+    }
+
+    .profile img {
+      display: block;
+      max-width: 200px;
+      margin: 0 auto 1.5rem;
+      border-radius: 50%;
+      border: 4px solid transparent;
+      animation: rainbow-border 4s linear infinite;
+    }
+
+    .profile p {
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .education table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    .education table, .education th, .education td {
+      border: 1px solid #fff;
+    }
+
+    .education th, .education td {
+      padding: 0.8rem;
+      text-align: center;
+    }
+
+    .education th {
+      background-color: #ffcc00;
+      color: #000;
+      animation: rainbow-border 3s linear infinite;
+    }
+
+    .projects .project-card {
+      background: #333;
+      margin: 1rem 0;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 2px solid transparent;
+      animation: rainbow-border 5s linear infinite;
+    }
+
+    .projects .project-card h3 {
+      color: #ff8c00;
+      margin-bottom: 0.5rem;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      border: 4px solid transparent;
+      animation: rainbow-border 3s linear infinite;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Fullscreen Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
+      animation: rainbow-border 3s linear infinite; /* Rainbow border effect in modal */
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 40px;
+      font-size: 2rem;
+      color: #fff;
+      cursor: pointer;
+      z-index: 1001;
+      text-shadow: 0 0 10px #ffcc00, 0 0 20px #ffcc00;
+    }
+
+    .modal-close:hover {
+      color: #ff8c00;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background: #000;
+      color: #fff;
+      font-size: 0.8rem;
+    }
+
+    /* Rainbow Border Animation */
+    @keyframes rainbow-border {
+      0% { border-color: red; }
+      16% { border-color: orange; }
+      33% { border-color: yellow; }
+      50% { border-color: green; }
+      66% { border-color: cyan; }
+      83% { border-color: blue; }
+      100% { border-color: violet; }
+    }
+
+    /* Rainbow Text Animation */
+    @keyframes rainbow-text {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <h1>Portfolio</h1>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#education">Education</a>
+      <a href="#projects">Projects</a>
+      <a href="#gallery">Gallery</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <!-- Section: About -->
+    <section id="about" class="profile">
+      <h2>About Me</h2>
+      <img src="face.jpg" alt="Your Photo">
+      <p>Hi, I am Suphavit Hnuseng. I am a Math-Science student with interests in gaming, programming, and design. I love to create unique projects and explore new challenges.</p>
+    </section>
+
+    <!-- Section: Education -->
+    <section id="education" class="education">
+      <h2>Education</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>School</th>
+            <th>Year</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>High School</td>
+            <td>Mahavajiravudh Changwat Songkhla School</td>
+            <td>2024–2026</td>
+          </tr>
+          <tr>
+            <td>Middle School</td>
+            <td>Mahavajiravudh Changwat Songkhla School</td>
+            <td>2021–2023</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Section: Projects -->
+    <section id="projects" class="projects">
+      <h2>Projects</h2>
+      <div class="project-card">
+        <h3>Project 1: Arcade Game</h3>
+        <p>Developed a retro-styled arcade game using HTML, CSS, and JavaScript. The game features dynamic gameplay and an engaging design.</p>
+      </div>
+      <div class="project-card">
+        <h3>Project 2: Portfolio Website</h3>
+        <p>Created a personal portfolio website with a unique arcade theme, showcasing my skills and projects.</p>
+      </div>
+    </section>
+
+    <!-- Section: Gallery -->
+    <section id="gallery">
+      <h2>Gallery</h2>
+      <div class="gallery">
+        <img src="Logo_big.png" alt="Certificate 1">
+        <img src="https://via.placeholder.com/300" alt="Certificate 2">
+        <img src="https://via.placeholder.com/300" alt="Certificate 3">
+        <img src="https://via.placeholder.com/300" alt="Certificate 4">
+        <img src="https://via.placeholder.com/300" alt="Certificate 5">
+        <img src="https://via.placeholder.com/300" alt="Certificate 6">
+      </div>
+    </section>
+  </div>
+
+  <!-- Fullscreen Modal -->
+  <div class="modal" id="modal">
+    <span class="modal-close" id="modal-close">&times;</span>
+    <img id="modal-image" src="" alt="Expanded View">
+  </div>
+
+  <footer>
+    <p>© 2024 Arcade Portfolio. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // JavaScript for Modal Functionality
+    const modal = document.getElementById('modal');
+    const modalImage = document.getElementById('modal-image');
+    const modalClose = document.getElementById('modal-close');
+    const galleryImages = document.querySelectorAll('.gallery img');
+
+    // Open Modal
+    galleryImages.forEach(image => {
+      image.addEventListener('click', () => {
+        modal.style.display = 'flex';
+        modalImage.src = image.src;
+        modalImage.alt = image.alt;
+      });
+    });
+
+    // Close Modal
+    modalClose.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+
+    // Close Modal on Click Outside Image
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
